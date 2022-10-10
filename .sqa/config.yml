@@ -1,0 +1,78 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/arrebol:
+      branch: sqa
+      repo: https://github.com/EOSC-synergy/arrebol
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.4
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EOSC-synergy/arrebol git:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-ultramarine-affenpinscher.sh
+        container: qc.acc_flaky-amethyst-dane
+  QC.Doc:
+    repos:
+      github.com/EOSC-synergy/arrebol find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-corn-hedgehog.sh
+        container: qc.doc_whiny-lilac-baboon
+      github.com/EOSC-synergy/arrebol git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-amber-caracal.sh
+        container: qc.doc_grumpy-rose-earwig
+      github.com/EOSC-synergy/arrebol markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.trippy-indigo-bobcat.sh
+        container: qc.doc_smelly-wheat-meerkat
+  QC.Lic:
+    repos:
+      github.com/EOSC-synergy/arrebol licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.chewy-scarlet-tiger.sh
+        container: qc.lic_lovely-pear-flamingo
+  QC.Sec:
+    repos:
+      github.com/EOSC-synergy/arrebol bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-cobalt-ladybird.sh
+        container: qc.sec_wiggy-green-jellyfish
+      github.com/EOSC-synergy/arrebol gosec:
+        commands:
+        - /usr/bin/env sh .sqa/script.breezy-cardinal-balinese.sh
+        container: qc.sec_pretty-crimson-tapir
+  QC.Sty:
+    repos:
+      github.com/EOSC-synergy/arrebol checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-buff-woodpecker.sh
+        container: qc.sty_slaphappy-sepia-burmese
+      github.com/EOSC-synergy/arrebol flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-aquamarine-angelfish.sh
+        container: qc.sty_randy-auburn-liger
+      github.com/EOSC-synergy/arrebol hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-platinum-havanese.sh
+        container: qc.sty_homey-auburn-eagle
+      github.com/EOSC-synergy/arrebol jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-beige-sheepdog.sh
+        container: qc.sty_goopy-celadon-badger
+      github.com/EOSC-synergy/arrebol staticcheck:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-purple-hummingbird.sh
+        container: qc.sty_cozy-flax-sheepdog
+  QC.Ver:
+    repos:
+      github.com/EOSC-synergy/arrebol get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-dandelion-panda.sh
+        container: qc.ver_lovely-amaranth-bobcat
+timeout: 1800
